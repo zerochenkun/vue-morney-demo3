@@ -2,7 +2,7 @@
   <div class="navigation">
     <router-link to="money">
       <svg>
-        <use xlink:href="#label" />
+        <use xlink:href="#money" />
       </svg>
       记账
     </router-link>
