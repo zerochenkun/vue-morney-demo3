@@ -12,5 +12,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+  p {
+    color:red;
+  }
 </style>
