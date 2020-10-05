@@ -3,7 +3,7 @@
     {{value}}
     <label class="notes">
       <span class="name">备注</span>
-      <input type="text" placeholder="在这里输入备注" :value="value" @input="inputValue">
+      <input type="text" placeholder="在这里输入备注" v-model="value">
     </label>
   </div>
 </template>
