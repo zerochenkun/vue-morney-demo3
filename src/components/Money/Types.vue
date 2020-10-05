@@ -7,53 +7,51 @@
   </div>
 </template>
 
-<script lang="js">
-  export default {
-    name: 'Types.vue',
-    props:['xxx'],
-    data(){
-      return {
-        type:'-'
-      }
-    },
-    methods:{
-      selectType(type){
-        if (type !== '+' && type !== '-'){
-          throw new Error ("type is unknown")
-        }
-        this.type = type
-      }
-    },
-    mounted(){
-      console.log(this.xxx);
+<script lang="ts">
+import Vue from 'vue';
+import {Component,Prop} from 'vue-property-decorator';
+
+@Component
+export default class Types extends Vue {
+  type = '-';//'-'表示支出 '+'表示收入
+  @Prop(Number) xxx: nubmber | undenfined;
+  selectType(type: string) {
+    if (type !== '+' && type !== '-') {
+      throw new Error('type is unknown');
     }
-  };
+    this.type = type;
+  }
+  mounted(){
+    console.log(this.xxx);
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
-  .types {
-    background: #c4c4c4;
+.types {
+  background: #c4c4c4;
+  display: flex;
+  text-align: center;
+  font-size: 24px;
+
+  > li {
+    width: 50%;
+    height: 64px;
     display: flex;
-    text-align: center;
-    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 
-    > li {
-      width: 50%;
-      height: 64px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-
-      &.selected::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: #333;
-      }
+    &.selected::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #333;
     }
   }
+}
 </style>
