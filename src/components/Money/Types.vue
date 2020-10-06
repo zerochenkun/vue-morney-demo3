@@ -14,15 +14,11 @@ import {Component,Prop} from 'vue-property-decorator';
 @Component
 export default class Types extends Vue {
   type = '-';//'-'表示支出 '+'表示收入
-  @Prop(Number) xxx: nubmber | undenfined;
   selectType(type: string) {
     if (type !== '+' && type !== '-') {
       throw new Error('type is unknown');
     }
     this.type = type;
-  }
-  mounted(){
-    console.log(this.xxx);
   }
 }
 
