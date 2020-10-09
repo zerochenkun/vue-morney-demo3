@@ -13,7 +13,7 @@
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
-      <button @click="inputContent" class="ok">OK</button>
+      <button @click="ok" class="ok">OK</button>
       <button @click="inputContent" class="zero">0</button>
       <button @click="inputContent">.</button>
     </div>
@@ -40,11 +40,7 @@ export default class extends Vue {
       }
       return;
     }
-    if (this.output.indexOf('.') >= 0) {
-      if (input === '.') {
-        return;
-      }
-    }
+    if (this.output.indexOf('.') >= 0 && input === '.' ) {return}
     this.output += input;
   }
 
@@ -58,6 +54,10 @@ export default class extends Vue {
 
   clear() {
     this.output = '0';
+  }
+
+  ok(){
+    this.$emit('update:value',this.output)
   }
 }
 </script>

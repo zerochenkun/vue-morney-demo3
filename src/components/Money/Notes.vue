@@ -1,20 +1,23 @@
 <template>
   <div>
-    {{ value }}
     <label class="notes">
       <span class="name">备注</span>
-      <input type="text" placeholder="在这里输入备注" v-model="value">
+      <input type="text" placeholder="在这里输入备注" v-model.trim="value">
     </label>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 
 @Component
 export default class extends Vue {
   value = '';
+  @Watch('value')
+  onValueChange(value: string,oldValue: string){
+    this.$emit("update:value",value)
+  }
 }
 </script>
 
