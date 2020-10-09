@@ -58,6 +58,7 @@ export default class extends Vue {
 
   ok(){
     this.$emit('update:value',this.output)
+    this.$emit('submit',this.output)
   }
 }
 </script>
