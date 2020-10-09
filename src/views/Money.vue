@@ -1,10 +1,10 @@
 <template>
   <Layout class-prefix="layout">
+  {{recordList}}
     <NumberPad @update:value="onUpdateAmount" @submit="saveRecord" />
     <Types :value.sync="record.type"/>
     <Notes @update:value="onUpdateNotes"/>
     <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
-  {{record}}
   </Layout>
 </template>
 
@@ -21,6 +21,7 @@ type Record = {
   notes: string;
   type: string;
   amount: number;
+  createDate?: Date;
 }
 @Component({
   components: {Notes, Tags, Types, NumberPad},
@@ -33,7 +34,7 @@ export default class Money extends Vue {
     type :  '-',//'-'表示支出 '+'表示收入
     amount : 0
   };
-  recordList: Record[] = []
+  recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') ||'[]')
 
   onUpdateTags(value: string[]) {
     this.record.tags = value;
@@ -49,6 +50,7 @@ export default class Money extends Vue {
 
   saveRecord(){
     const deepCloneRecord = JSON.parse(JSON.stringify(this.record))
+    deepCloneRecord.createDate = new Date()
     this.recordList.push(deepCloneRecord)
   }
 

@@ -31,7 +31,9 @@ export default class extends Vue {
   inputContent(event: MouseEvent) {
     const button = event.target as HTMLButtonElement;
     const input = button.textContent!;
-    if(this.output.length === 16){return}
+    if (this.output.length === 16) {
+      return;
+    }
     if (this.output === '0') {
       if ('0123456789'.indexOf(input) >= 0) {
         this.output = input;
@@ -40,7 +42,9 @@ export default class extends Vue {
       }
       return;
     }
-    if (this.output.indexOf('.') >= 0 && input === '.' ) {return}
+    if (this.output.indexOf('.') >= 0 && input === '.') {
+      return;
+    }
     this.output += input;
   }
 
@@ -56,9 +60,10 @@ export default class extends Vue {
     this.output = '0';
   }
 
-  ok(){
-    this.$emit('update:value',this.output)
-    this.$emit('submit',this.output)
+  ok() {
+    this.$emit('update:value', this.output);
+    this.$emit('submit', this.output);
+    this.output = '0';
   }
 }
 </script>
