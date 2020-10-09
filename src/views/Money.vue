@@ -15,6 +15,8 @@ import Types from '@/components/Money/Types.vue';
 import Notes from '@/components/Money/Notes.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component, Watch} from 'vue-property-decorator';
+const model = require('@/model.js').model
+console.log(model);
 
 type Record = {
   tags: string[];
@@ -34,7 +36,7 @@ export default class Money extends Vue {
     type :  '-',//'-'表示支出 '+'表示收入
     amount : 0
   };
-  recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') ||'[]')
+  recordList: Record[] = model.fetch()
 
   onUpdateTags(value: string[]) {
     this.record.tags = value;
